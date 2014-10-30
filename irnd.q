@@ -12,6 +12,7 @@
 
 /Reimplementation of implied Risk Neutral Distribution(RND) using q kdb+
 /Use stat.q for cumulative standard normal distribution function
+/Can be downloaded from http://kx.com/q/stat.q
 \l stat.q
 
 /Function parameters

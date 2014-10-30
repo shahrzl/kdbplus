@@ -26,44 +26,66 @@
 /2.Error handling
 
 /IV fitted function. Fitted to the aK^2 + bK + c curve.
-ivFitted:{[K] a1:2.0*(10.0 xexp -8.0);a2:-0.0004;a3:2.3088;a1:a1*(K xexp 2.0);a1:a1+a2*K;a1:a1+a3}
+
+ivFitted:{[K]
+        a1:2.0*(10.0 xexp -8.0);
+        a2:-0.0004;
+        a3:2.3088;
+        a1:a1*(K xexp 2.0);
+        a1:a1+a2*K;
+        a1:a1+a3
+        }
 
 /Function to calculate d1 as in N(d1) in the Black Scholes equation.
-d1:{[S;K;T;rF;Sigma] tmp1: log S%K;tmp2:((rF+(Sigma xexp 2)%2))*T;tmp3:Sigma * sqrt[T];d1:(tmp1+tmp2);d1:d1%tmp3;:d1}
+d1:{[S;K;T;rF;Sigma]
+        tmp1: log S%K;
+        tmp2:((rF+(Sigma xexp 2)%2))*T;
+        tmp3:Sigma * sqrt[T];
+        d1:(tmp1+tmp2);
+        d1:d1%tmp3;
+        :d1
+        }
 
 /Function d2 as in N(d2) in the Black Scholes equation.
 /d2 is calculated using equation d1-Sigma*sqrt[T]
-d2:{[S;K;T;rF;Sigma] d2:d1[S;K;T;rF;Sigma] - Sigma*sqrt[T];:d2}
+d2:{[S;K;T;rF;Sigma]
+        d2:d1[S;K;T;rF;Sigma] - Sigma*sqrt[T];
+        :d2
+        }
 
-/Function to calculate Call Option price using Black Scholes equation
-//bsCallPrice:{[S;K;T;rF;Sigma] 
-/callPrice: S*nx[ d1[S;K;T;rF;Sigma]];
-/callPrice: callPrice - K*exp[-rF*T]*nx[ d2[S;K;T;rF;Sigma]];
-/:callPrice}
-
-callPrc:{[S;K;T;rF;Sigma] prc:S*nx[d1[S;K;T;rF;Sigma]];tmp1:K * exp[neg rF*T];tmp1:tmp1*nx[d2[S;K;T;rF;Sigma]];:prc-tmp1}
+/Function to calculate Call Option price using Black Scholes equation.
+callPrc:{[S;K;T;rF;Sigma]
+        prc:S*nx[d1[S;K;T;rF;Sigma]];
+        tmp1:K * exp[neg rF*T];
+        tmp1:tmp1*nx[d2[S;K;T;rF;Sigma]];
+        :prc-tmp1
+        }
 
 /Function to calculate implied pdf
-impliedPDF:{[c0;cp;cm;rF;T;dS] ipdf: (cp+cm)-2*c0;ipdf: ipdf%(dS xexp 2);ipdf: ipdf * exp[rF*T];:ipdf}
+impliedPDF:{[c0;cp;cm;rF;T;dS]
+        ipdf: (cp+cm)-2*c0;
+        ipdf: ipdf%(dS xexp 2);
+        ipdf: ipdf * exp[rF*T];
+        :ipdf
+        }
 
 /A Demo on how to use above function to calculate implied risk neutral probability
-demoFunc:{[dS] K:til 1000;K:K*dS;K:K+6500;Kminus:K-dS;Kplus:K+dS;S0:10801.57;rF:0.0017;T:0.108;iv:ivFitted K;ivplus: ivFitted Kplus;ivminus: ivFitted Kminus;c0:callPrc[S0;K;T;rF;iv];cplus:callPrc[S0;Kplus;T;rF;ivplus];cminus:callPrc[S0;Kminus;T;rF;ivminus];impliedRND:impliedPDF[c0;cplus;cminus;rF;T;dS];:impliedRND}
-
-/What we did inside demo func but this time broken down line by line for readability
-dS:10
-S0:10801.57
-rF:0.0017
-T:0.108
-K: til 1000
-K:K*dS
-K:K+6500
-Kminus:K-dS
-Kplus:K+dS
-iv:ivFitted K
-ivplus:ivFitted Kplus
-ivminus:ivFitted Kminus
-c0:callPrc[S0;K;T;rF;iv]
-cplus:callPrc[S0;Kplus;T;rF;ivplus]
-cminus:callPrc[S0;Kminus;T;rF;ivminus]
-impliedRND:impliedPDF[c0;cplus;cminus;rF;T;dS]
+demoFunc:{[dS]
+        K:til 1000;
+        K:K*dS;
+        K:K+6500;
+        Kminus:K-dS;
+        Kplus:K+dS;
+        S0:10801.57;
+        rF:0.0017;
+        T:0.108;
+        iv:ivFitted K;
+        ivplus: ivFitted Kplus;
+        ivminus: ivFitted Kminus;
+        c0:callPrc[S0;K;T;rF;iv];
+        cplus:callPrc[S0;Kplus;T;rF;ivplus];
+        cminus:callPrc[S0;Kminus;T;rF;ivminus];
+        impliedRND:impliedPDF[c0;cplus;cminus;rF;T;dS];
+        :impliedRND
+        }
 

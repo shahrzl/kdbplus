@@ -27,7 +27,7 @@
 /2.Error handling
 
 /IV fitted function. Fitted to the aK^2 + bK + c curve.
-
+/This one created for testing.
 ivFitted:{[K]
         a1:2.0*(10.0 xexp -8.0);
         a2:-0.0004;
@@ -35,6 +35,14 @@ ivFitted:{[K]
         a1:a1*(K xexp 2.0);
         a1:a1+a2*K;
         a1:a1+a3
+        }
+
+/This is the real one.       
+ivFitted2:{[K;a;b;c]
+        iv:a*(K xexp 2.0);
+        iv:iv+b*K;
+        iv:iv+c;
+        :iv
         }
 
 /Function to calculate d1 as in N(d1) in the Black Scholes equation.

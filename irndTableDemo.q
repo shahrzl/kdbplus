@@ -5,6 +5,15 @@
 /set http port. We can check our calc result via web browser.
 \p 5053
 
+K:til 1000;
+K:K*dS;
+K:K+6500;
+Kminus:K-dS;
+Kplus:K+dS;
+S0:10801.57;
+rF:0.0017;
+T:0.108;
+
 kTbl:([] K:`int$();Kplus:`int$();Kminus:`int$())
 `kTbl insert (K;Kplus;Kminus)
 ivTbl: select K,Kplus,Kminus,iv: ivFitted[K],ivplus:ivFitted[Kplus],ivminus:ivFitted[Kminus] from kTbl

@@ -58,3 +58,44 @@ eurCall:{[S0;K;T;rF;vol;n]
 
         :tmp
         }
+        
+/Another version where you can calculate both call or put option.
+/flag can be `put or `call
+eurOption:{[S0;K;T;rF;vol;n;flag]
+        dt:T%n;
+        u:exp[ vol*sqrt[dt]]; /u is up factor
+        d:1%u;
+        p:exp[rF*dt] - d;
+        p:p%(u-d);
+        df: exp[(neg rF)*dt];
+
+        if[flag=`call; pcflag:1];
+        if[flag=`put; pcflag:-1];
+
+        tmp: til n;
+        /first we calculate the probabilities
+        ptmp: p xexp reverse tmp;
+        qtmp:(1-p) xexp tmp;
+        pq: ptmp*qtmp;
+
+        /next we calculate underlying price for each node
+        ups: u xexp reverse tmp;
+        downs: d xexp tmp;
+        S:S0*ups*downs;
+        S:S-K;
+        /we use the flag here.
+        S:pcflag*S;
+
+        /next we multiplied S with the probabilities
+        tmp: S*pq;
+        flag: tmp>0;
+        tmp:tmp*flag;
+
+        /finally we take the sum and multiply with exp neg rF*T
+        /we can use function sum
+        /but here we will show how to use adverb
+        tmp:0+/tmp;
+        tmp:tmp*exp[neg[rF]*T];
+
+        :tmp
+        }

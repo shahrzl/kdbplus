@@ -1,6 +1,6 @@
 
 /Reference: http://code.kx.com/wsvn/code/contrib/simon/googlefinance/
-/This code was written with reference to googlefinance.q code by Simon Graland
+/This code was written with reference to googlefinance.q code by Simon Garland
 
 /Notes on coding style: This code was written in a step by step manner for easy understanding by the reader.
 

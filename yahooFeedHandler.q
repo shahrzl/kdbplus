@@ -1,23 +1,22 @@
 
 /Yahoo Feed Handler.
-/To use this, make sure Tickerplant is started first. See tick.q on how to start Tickerplant.
+/To use this, make sure Tickerplant is started first.
 
 getTnQBySyms:{
-        params:"GET /d/quotes.csv?s=",(","sv string x,:()),"&f=b2b3a5b6l1k3 http/1.0\r\nhost:download.finance.yahoo.com\r\n\r\n";
+        params:"GET /d/quotes.csv?s=",(","sv string x,:()),"&f=l1k3 http/1.0\r\nhost:download.finance.yahoo.com\r\n\r\n";
         a:{(1+x?"")_x}` vs `:http://download.finance.yahoo.com params;
-        b:{b:count x ss ",";if[b=6;a: x _ last x ss ","];if[b<6;a:x];("FFFFFF";",")0:a} each a;
+        b:{b:count x ss ",";if[b=2;a: x _ last x ss ","];if[b>2;a: x _/ reverse  (1-b)# x ss ","];if[b<2;a:x];("FF";",")0:a} each a;
         :b
         }
 
 /open connection with TP
 h:hopen 5010
 
-/timer frequency.Change here to change frequency.
-t:1000*5
+/timer frequency
+t:1000*30
 publish:{neg[h](`.u.upd;x;y)}
 
-/Change x to change to your own list of symbols.
-.z.ts:{a:getTnQBySyms x:`GOOG`AMZN`AAPL;publish[`quote;]each flip 5#flip x,'a;publish[`trade;]each x,'flip(-2#flip a)}
+.z.ts:{a:getTnQBySyms x:`GOOG`AMZN`MSFT;publish[`trade;]each x,'a}
 
 system"t ",string t
 

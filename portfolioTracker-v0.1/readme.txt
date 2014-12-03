@@ -8,8 +8,10 @@ To run this:
  alternatively run feed simulator feedsim.q.
 
         >q feedsim.q
+        
+        The tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
-3.Run this. q pnl.q :5010
+3.Run pnl.q.
 
         >q pnl.q
 

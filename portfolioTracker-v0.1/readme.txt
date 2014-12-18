@@ -22,4 +22,4 @@ To run this:
 
         >q execsvc.q
         
-4.Open portfolioTracker.html in your browser.
+5.Open portfolioTracker.html in your browser.

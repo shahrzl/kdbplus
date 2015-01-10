@@ -3,7 +3,7 @@
 /Status: Still under development.
 
 /Things todo:
-/1.support multiple currencies. need to retrieve fx data
+/1.support multiple currencies. need to retrieve fx data.
 /2.add exchange data into the table.
 
 \p 5011

@@ -125,7 +125,7 @@ pub:{neg[x] -8!y}
 bsTbl:([] S:`float$();K:`float$(); T:`float$();rF:`float$(); vol:`float$());
 
 ///function to be called through web socket
-calcValue:{[dat]
+calcGreeks:{[dat]
         0N!dat;
         K:dat 0;
         T:dat 1;

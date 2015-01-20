@@ -97,6 +97,18 @@ putVega:{[S;K;T;rF;vol]
         :callVega[S;K;T;rF;vol]
         }
         
+callTheta:{[S;K;T;rF;vol]
+        a:nx[d2[S;K;T;rF;vol]]*K*exp[neg rF*T]*rF;
+        b:S*gaussianKernel[d1[S;K;T;rF;vol]]*vol;
+        b:b%2*sqrt[T];
+        b:neg b;
+        :b-a
+        }
+
+callRho:{[S;K;T;rF;vol]
+        :nx[d2[S;K;T;rF;vol]]*K*exp[neg rF*T]*T
+        }
+        
 //---------web socket functionality----------------
 
 .z.ws:{
@@ -128,8 +140,10 @@ calcValue:{[dat]
         rF:numofDat#rF;
         vol:numofDat#vol;
 
-        bsTbl insert (`float$S; `float$K; `float$T; `float$rF; `float$vol);
-        res: select S, Delta:callDelta[S;K;T;rF;vol] from bsTbl;
+        delete from `bsTbl;
+
+        `bsTbl insert (`float$S; `float$K; `float$T; `float$rF; `float$vol);
+        res: select S, Delta:callDelta[S;K;T;rF;vol], Gamma:callGamma[S;K;T;rF;vol], Vega:callVega[S;K;T;rF;vol], Theta:callTheta[S;K;T;rF;vol], Rho:callRho[S;K;T;rF;vol] from bsTbl;
         pub[.z.w] (`drawChart;res);
         }
 

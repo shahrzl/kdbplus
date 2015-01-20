@@ -1,1 +1,193 @@
+!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Black Scholes Model Viewer</title>
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+<style>
+  #strike, #mat, #rfree, #volatility {
+    float: left;
+    clear: left;
+    width: 200px;
+    margin: 15px;
+  }
+
+  #swatch {
+    width: 120px;
+    height: 100px;
+    margin-top: 18px;
+    margin-left: 350px;
+    background-image: none;
+  }
+  
+  #strike .ui-slider-range { background: #729fcf; }
+  #strike .ui-slider-handle { border-color: #ef2929; }
+  #mat .ui-slider-range { background: #729fcf; }
+  #mat .ui-slider-handle { border-color: #8ae234; }
+  #rfree .ui-slider-range { background: #729fcf; }
+  #rfree .ui-slider-handle { border-color: #729fcf; }
+  #volatility .ui-slider-range { background: #729fcf; }
+  #volatility .ui-slider-handle { border-color: #729fcf; }
+
+  </style>
+<script>
+
+function recalcValue() {
+        var strikePrice = $( "#strike" ).slider( "value" ),
+        maturity = $( "#mat" ).slider( "value" )/100.0,
+        rFreeRate = $( "#rfree" ).slider( "value" )/100.0,
+        vola = $( "#volatility" ).slider( "value" )/100.0;
+
+        $( "#K" ).val( $( "#strike" ).slider( "value" ) );
+        $( "#T" ).val(  $( "#mat" ).slider( "value" )/100.0 );
+        $( "#RF" ).val(  $( "#rfree" ).slider( "value" )/100.0 );
+        $( "#Vol" ).val(  $( "#volatility" ).slider( "value" )/100.0 );
+
+        //Send request to q/kdb+ service.
+
+        calcGreeks(strikePrice, maturity, rFreeRate, vola);
+  }
+  
+  $(function() {
+    $( "#strike" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 50,
+      max: 150,
+      value: 100,
+      slide: recalcValue,
+      change: recalcValue
+    });
+
+    $( "#mat" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 1,
+      max: 100,
+      value: 60,
+      slide: recalcValue,
+      change: recalcValue
+    });
+
+    $( "#rfree" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 4,
+      slide: recalcValue,
+      change: recalcValue
+    });
+    
+    $( "#volatility" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 30,
+      slide: recalcValue,
+      change: recalcValue
+    });
+
+    $( "#strike" ).slider( "value", 100 );
+    $( "#mat" ).slider( "value", 60 );
+    $( "#rfree" ).slider( "value", 4 );
+    $( "#volatility" ).slider( "value", 30 );
+  });
+  </script>
+</head>
+
+<body class="ui-widget-content" style="border:0;"  onload="connect();">
+
+<p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+  <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+  Black-Scholes Model
+</p>
+
+<table cellpadding="30" width="100%">
+
+<tr>
+<td>
+<p>
+<label for="K">Strike Price, K</label>
+<input type="text" id="K" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="strike"></div>
+</td>
+
+
+<td>
+<p>
+<label  for="T">Maturity, T</label>
+<input type="text" id="T" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="mat"></div>
+</td>
+
+<td>
+<p>
+<label  for="RF">Risk free Interest Rate, rf</label>
+<input type="text" id="RF" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="rfree"></div>
+</td>
+
+<td>
+<p>
+<label  for="Vol">Volatility, vol</label>
+<input type="text" id="Vol" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="volatility"></div>
+</td>
+
+</tr>
+
+</table>
+
+<table cellpadding="30" width="100%">
+<tr>
+
+<td>
+<div id="delta_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+<td>
+<div id="gamma_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+</tr>
+<tr>
+
+<td>
+<div id="vega_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+<td>
+<div id="theta_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+</tr>
+<tr>
+
+<td>
+<div id="rho_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+</tr>
+</table>
+
+<!-- Load kdb related  JavaScript files -->
+<script src="http://kx.com/q/c/c.js"></script>
+<script src="bs.js"></script>
+
+</body>
+</html>

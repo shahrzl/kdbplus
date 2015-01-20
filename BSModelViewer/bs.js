@@ -25,6 +25,13 @@ function connect(){
 
 }
 
+function calcGreeks(strike, mat, rate, vol) {
+
+        console.log([strike,mat,rate,vol]);
+        ws.send( serialize(['calcGreeks',[strike,mat,rate,vol]]));
+
+}
+
 function drawChart(data) {
         var arr = deltaArrayBuilder(data);
 
@@ -37,6 +44,51 @@ function drawChart(data) {
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(deltaChartData, options);
+        
+        var arr_gamma = gammaArrayBuilder(data);
+        var gammaChartData = google.visualization.arrayToDataTable(arr_gamma);
+
+        var options_gamma = {
+          title: 'Gamma',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart_gamma = new google.visualization.LineChart(document.getElementById('gamma_chart_div'));
+        chart_gamma.draw(gammaChartData, options_vega);
+
+
+        var arr_vega = vegaArrayBuilder(data);
+        var vegaChartData = google.visualization.arrayToDataTable(arr_vega);
+
+        var options_vega = {
+          title: 'Vega',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart_vega = new google.visualization.LineChart(document.getElementById('vega_chart_div'));
+        chart_vega.draw(vegaChartData, options_vega);
+
+        var arr_theta = thetaArrayBuilder(data);
+        var thetaChartData = google.visualization.arrayToDataTable(arr_theta);
+
+        var options_theta = {
+          title: 'Theta',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart_theta = new google.visualization.LineChart(document.getElementById('theta_chart_div'));
+        chart_theta.draw(thetaChartData, options_theta);
+        
+        var arr_rho = rhoArrayBuilder(data);
+        var rhoChartData = google.visualization.arrayToDataTable(arr_rho);
+
+        var options_rho = {
+          title: 'Rho',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart_rho = new google.visualization.LineChart(document.getElementById('rho_chart_div'));
+        chart_rho.draw(rhoChartData, options_rho);
 
 }
 
@@ -49,6 +101,80 @@ function deltaArrayBuilder(data) {
                 for (var x in data[0]) {
                         //push data
                         if("S"===x || "Delta"===x ){
+                                dat.push(data[i][x]);
+                        }
+                }
+                arr.push(dat);
+        }
+
+        return arr;
+}
+
+function gammaArrayBuilder(data) {
+        var arr=[["Price","Gamma"]];
+
+        for (var i = 0; i < data.length; i++) {
+                //console.log(data.length);
+                var dat = [];
+                for (var x in data[0]) {
+                        //push data
+                        if("S"===x || "Gamma"===x ){
+                                dat.push(data[i][x]);
+                        }
+                }
+                arr.push(dat);
+        }
+
+        return arr;
+
+}
+
+function vegaArrayBuilder(data) {
+        var arr=[["Price","Vega"]];
+
+        for (var i = 0; i < data.length; i++) {
+                //console.log(data.length);
+                var dat = [];
+                for (var x in data[0]) {
+                        //push data
+                        if("S"===x || "Vega"===x ){
+                                dat.push(data[i][x]);
+                        }
+                }
+                arr.push(dat);
+        }
+
+        return arr;
+
+}
+
+function thetaArrayBuilder(data) {
+        var arr=[["Price","Theta"]];
+
+        for (var i = 0; i < data.length; i++) {
+                //console.log(data.length);
+                var dat = [];
+                for (var x in data[0]) {
+                        //push data
+                        if("S"===x || "Theta"===x ){
+                                dat.push(data[i][x]);
+                        }
+                }
+                arr.push(dat);
+        }
+
+        return arr;
+}
+
+function rhoArrayBuilder(data) {
+        var arr=[["Price","Rho"]];
+
+        for (var i = 0; i < data.length; i++) {
+                //console.log(data.length);
+                var dat = [];
+                for (var x in data[0]) {
+                        //push data
+                        if("S"===x || "Rho"===x ){
                                 dat.push(data[i][x]);
                         }
                 }

@@ -6,13 +6,14 @@ To run this:
 1.Run ticker plant. q tick.q sym . -p 5010
 
         >q tick.q sym . -p 5010
+        
+The tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
 2.Run yahooFeedHandler. q yahooFeedHandler.q :5010 or
- alternatively run feed simulator feedsim.q.
+ alternatively run our random walk feed simulator feedsimR.q.
 
-        >q feedsim.q
+        >q feedsimR.q
         
-        The tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
 3.Run pnl.q.
 

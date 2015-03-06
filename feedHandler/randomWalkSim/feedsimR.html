@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Random walk simulator GOOG</title>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+<style>
+  #strike, #mat, #rfree, #volatility {
+    float: left;
+    clear: left;
+    width: 200px;
+    margin: 15px;
+  }
+
+  #swatch {
+    width: 120px;
+    height: 100px;
+    margin-top: 18px;
+    margin-left: 350px;
+    background-image: none;
+  }
+
+  #strike .ui-slider-range { background: #729fcf; }
+  #strike .ui-slider-handle { border-color: #ef2929; }
+  #mat .ui-slider-range { background: #729fcf; }
+  #mat .ui-slider-handle { border-color: #8ae234; }
+  #rfree .ui-slider-range { background: #729fcf; }
+  #rfree .ui-slider-handle { border-color: #729fcf; }
+  #volatility .ui-slider-range { background: #729fcf; }
+  #volatility .ui-slider-handle { border-color: #729fcf; }
+
+  </style>
+<script>
+
+  </script>
+</head>
+
+<body class="ui-widget-content" style="border:0;"  onload="connect();">
+
+<p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+  <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+  Random walk simulator - GOOG.
+</p>
+
+
+<table cellpadding="30" width="100%">
+<tr>
+
+<td>
+<div id="price_chart_div" style="width: 1200px; height: 600px;"></div>
+</td>
+
+
+</tr>
+</table>
+
+<!-- Load kdb related  JavaScript files -->
+<script src="http://kx.com/q/c/c.js"></script>
+<script src="feedsimR.js"></script>
+
+</body>
+</html>

@@ -7,12 +7,14 @@ To run this:
 
         >q tick.q sym . -p 5010
         
-The tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
+tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
 2.Run yahooFeedHandler. q yahooFeedHandler.q :5010 or
  alternatively run our random walk feed simulator feedsimR.q.
 
         >q feedsimR.q
+        
+feedsimR.q can be found under kdbplus/feedhandler/randomWalkSim/
         
 
 3.Run pnl.q.

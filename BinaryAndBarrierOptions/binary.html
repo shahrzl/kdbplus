@@ -1,0 +1,33 @@
+
+!doctype html>
+<html>
+<head>
+<title>Pricing Binary and Barrier Options</title>
+</head>
+
+<body onload="connect();">
+
+<!-- Set up placeholders to display the price outputs -->
+<section id="quotes" class="display"> <div class="split">
+         <h3>Higher</h3>
+         <table id="hTbl"></table>
+      </div>
+      <div class="split">
+         <h3>No Touch</h3>
+         <table id="ntTbl"></table>
+      </div>
+   </section>
+
+   <!-- Load JavaScript files -->
+<script src="http://kx.com/q/c/c.js"></script>
+<script src="binary.js"></script>
+
+<style> /* define some CSS styling on page elements */
+section {margin:10px;padding:20px;width:95%;}
+button {margin:10px;}
+h3 {margin:5px;}
+table {border-collapse:collapse;text-align:center;width:100%;} td,th {border:1px solid black;padding:5px 20px;width:25%} .split {float:left;width:45%;margin-right:20px;display:table;} #selectSyms {padding:10px;min-height:30px;}
+   </style>
+
+</body>
+</html>

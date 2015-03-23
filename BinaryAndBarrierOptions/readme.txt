@@ -4,7 +4,8 @@ Pricing Binary and Barrier Options.
 Notes:
 
 1. Here we tried to price two types of options. The Higher and the No Touch which are available
-on binary.com website.
+on binary.com website. 
+We considered the pricing in the situation where Spot price > Barrier for both types.
 2. Volatility are considered to be constant. Here I used Implied Volatility calibrated based on price 
 available from binary.com website.
 3. 1-month LIBOR is used as risk free rate.

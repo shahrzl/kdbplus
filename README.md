@@ -14,8 +14,7 @@ Here are list of some of the projects under kdbplus repository:
    available from binary.com website.
   * 1-month LIBOR is used as risk free rate.
   * FX rates data is sourced from Yahoo Finance.
-  * Communication between back end and front end is done using Web Socket. Here I am using port 5027.
-   You can change to other port nunmber by editing binarySvc.q.
+  * Communication between back end and front end is done using Web Socket. 
 
   References:
 

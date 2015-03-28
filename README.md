@@ -34,3 +34,13 @@ Here are list of some of the projects under kdbplus repository:
 
   ![irnd](https://cloud.githubusercontent.com/assets/9425771/6879928/705e4738-d550-11e4-94e0-c41d9e95eeec.png)
   
+3. Portfolio Tracker.
+  * Demonstrate the use of feed handler, tickerplant as tick subscriber.
+  * Market data is sourced from Yahoo Finance. Please note that it is a delayed tick data.
+  * PnL is calculated based on the difference between average bought/sold price and last price.
+  * Charts was rendered using Google Chart Api.
+  * Web Socket is used to push data to GUI.
+  
+  Screenshot:
+  ![ptr](https://cloud.githubusercontent.com/assets/9425771/6880569/4fe2dc9e-d573-11e4-84ae-b3522efe7696.png)
+

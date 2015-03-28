@@ -35,10 +35,13 @@ Here are list of some of the projects under kdbplus repository:
   ![irnd](https://cloud.githubusercontent.com/assets/9425771/6879928/705e4738-d550-11e4-94e0-c41d9e95eeec.png)
   
 3. Portfolio Tracker.
-  * Demonstrate the use of feed handler, tickerplant as tick subscriber.
+  * Demonstrate the use of feed handler, tickerplant as well as tick subscriber.
   * Market data is sourced from Yahoo Finance. Please note that it is a delayed tick data.
+  * A feed handler based on Random Walk Simulation is also available so that application can be tested
+    during market close. This simulator can be found under feedHandler/randomWalkSim directory.
+    The file is feedsimR.q.
   * PnL is calculated based on the difference between average bought/sold price and last price.
-  * Charts was rendered using Google Chart Api.
+  * Charts are rendered using Google Chart Api.
   * Web Socket is used to push data to GUI.
   
   Screenshot:

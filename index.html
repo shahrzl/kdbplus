@@ -34,6 +34,52 @@
 <p>A repository for q/kdb+ programs. For more details on q/kdb+ visit <a href="http://www.kx.com">www.kx.com</a>.</p>
 
 <p>Keywords: Binomial Model, Black-Scholes Equation, Options Pricing, Risk Neutral Distribution, Physical Distribution, Statistics, Portfolio Tracking, Tickerplant, Web Socket.</p>
+
+<p>Here are list of some of the projects under kdbplus repository:</p>
+
+<ol>
+<li>
+<p>Binary and Barrier Options Pricing.</p>
+
+<ul>
+<li>Here we tried to price two types of options. The Higher and the No Touch which are available
+on binary.com website. </li>
+<li>Volatility are considered to be constant. Here I used Implied Volatility calibrated based on price 
+available from binary.com website.</li>
+<li>1-month LIBOR is used as risk free rate.</li>
+<li>FX rates data is sourced from Yahoo Finance.</li>
+<li>Communication between back end and front end is done using Web Socket. Here I am using port 5027.
+You can change to other port nunmber by editing binarySvc.q.</li>
+</ul>
+
+<p>References:</p>
+
+<ul>
+<li>Derman, Emanuel, and lraj Kani. "The Ins and Outs of
+Barrier Optiom: Part 2." Derivatives Quarterly, Winrcr 96
+URL: <a href="http://www.emanuelderman.com/media/insoutbarriers2.pdf">http://www.emanuelderman.com/media/insoutbarriers2.pdf</a>
+</li>
+</ul>
+</li>
+<li>
+<p>Implied Risk Neutral Distribution.</p>
+
+<ul>
+<li>Computation of Implied Risk Neutral Distribution by recovering from index option prices.</li>
+<li>Here I use Nikkei 225 Options data available from Osaka Stock Exchange (OSE) website.</li>
+</ul>
+
+<p>References:</p>
+
+<ul>
+<li>Shimko, David C(1993): "Bounds of Probability", Risk, 6, 33-7</li>
+</ul>
+
+<p>Screenshot:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/9425771/6879928/705e4738-d550-11e4-94e0-c41d9e95eeec.png" alt="irnd"></p>
+</li>
+</ol>
         </section>
 
         <aside id="sidebar">

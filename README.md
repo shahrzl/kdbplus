@@ -47,3 +47,10 @@ Here are list of some of the projects under kdbplus repository:
   Screenshot:
   ![ptr](https://cloud.githubusercontent.com/assets/9425771/6880569/4fe2dc9e-d573-11e4-84ae-b3522efe7696.png)
 
+4. Physical Distribution Estimation.
+  * An estimation of physical distribution based on historical data using Gaussian Kernel.
+  * Here I am using Nikkei 225 daily historical data for year 2014. This data was downloaded
+    from Yahoo Finance.
+
+  Screenshot:
+  ![gaussian](https://cloud.githubusercontent.com/assets/9425771/6885618/07ca59a8-d65b-11e4-86db-5858c1bee709.png)

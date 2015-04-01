@@ -54,3 +54,10 @@ Here are list of some of the projects under kdbplus repository:
 
   Screenshot:
   ![gaussian](https://cloud.githubusercontent.com/assets/9425771/6885618/07ca59a8-d65b-11e4-86db-5858c1bee709.png)
+
+5. BS Model Viewer.
+  * A graphical viewer for Black-Scholes model for European Call Option.
+  * The GUI allows user to change parameters and see how the Greek letters change.
+  
+  Screenshot:
+  ![bs](https://cloud.githubusercontent.com/assets/9425771/6935038/ceeeed8e-d870-11e4-8adf-d0f5421c24f1.png)

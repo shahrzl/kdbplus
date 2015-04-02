@@ -19,7 +19,7 @@ Here are list of some of the projects under kdbplus repository:
   References:
 
   - Derman, Emanuel, and lraj Kani. "The Ins and Outs of
-    Barrier Optiom: Part 2." Derivatives Quarterly, Winrcr 96
+    Barrier Option: Part 2." Derivatives Quarterly, Winrcr 96
     URL: http://www.emanuelderman.com/media/insoutbarriers2.pdf
 
 2. Implied Risk Neutral Distribution.

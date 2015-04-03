@@ -9,7 +9,11 @@ To run this:
         
 tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
-2.Run yahooFeedHandler. q yahooFeedHandler.q :5010 or
+2.Run yahooFeedHandler. 
+
+        >q yahooFeedHandler.q :5010 
+ 
+ or
  alternatively run our random walk feed simulator feedsimR.q.
 
         >q feedsimR.q

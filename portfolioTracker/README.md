@@ -1,12 +1,13 @@
 
-###Preview of version 0.2
--------------------------
+Preview of version 0.2
+======================
 
 ####What's new?
 
 * Support multiple currencies. PnL in currencies other than USD will be automatically converted to USD.
 * Added product informations such as name and exchange.
 * Aggregate view by Account.
+* Live Chart for market data.
 
 Screenshot:
 

@@ -6,7 +6,7 @@
 
 * Support multiple currencies. PnL in currencies other than USD will be automatically converted to USD.
 * Added product informations such as name and exchange.
-* Aggregate view by Account and Trader.
+* Aggregate view by Account.
 
 Screenshot:
 

@@ -10,6 +10,6 @@
 
 Screenshot:
 
-![ptr0 3](https://cloud.githubusercontent.com/assets/9425771/6995838/3cc1b172-db94-11e4-854f-0acf87ae1c0a.png)
+![ptr0 2](https://cloud.githubusercontent.com/assets/9425771/6999729/e81068d8-dc44-11e4-87ac-b0d7695070ef.png)
 
 

@@ -11,6 +11,6 @@
 
 Screenshot:
 
-![ptr0 2](https://cloud.githubusercontent.com/assets/9425771/6999729/e81068d8-dc44-11e4-87ac-b0d7695070ef.png)
+![ptr0 2-2](https://cloud.githubusercontent.com/assets/9425771/7025990/95c51e58-dd79-11e4-8e61-296a486a758f.png)
 
 

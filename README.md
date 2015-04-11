@@ -5,7 +5,7 @@ A repository for q/kdb+ programs. For more details on q/kdb+ visit www.kx.com.
 
 _Keywords: Binomial Model, Black-Scholes Equation, Options Pricing, Risk Neutral Distribution, Physical Distribution, Statistics, Portfolio Tracking, Tickerplant, Web Socket._
 
-Here are list of some of the projects under kdbplus repository:
+###Projects:
 
 1. Binary and Barrier Options Pricing.
   * Here we tried to price two types of options. The Higher and the No Touch which are available

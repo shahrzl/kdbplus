@@ -2,6 +2,7 @@ Pre-requisite: Have q installed. To install q, go to www.kx.com.
 
 
 To run this:
+
 1.Run ticker plant. q tick.q sym . -p 5010
 
         >q tick.q sym . -p 5010

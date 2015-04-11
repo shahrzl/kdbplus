@@ -1,0 +1,19 @@
+sym,name,exchange
+GOOG,Google Inc.,NASDAQ
+AMZN,Amazon.com Inc.,NASDAQ
+MSFT,Microsoft Corporation,NASDAQ
+AAPL,Apple Inc.,NASDAQ
+TM,Toyota Motor Corporation,NYSE
+GE,General Electric Company,NYSE
+HAL,Halliburton Company,NYSE
+BAC,Bank of America Corporation,NYSE
+F,Ford Motor Co.,NYSE
+CSCO,Cisco Systems Inc,NASDAQ
+INTC,Intel Corporation,NASDAQ
+BP%2EL,BP Plc,LSE
+1155%2EKL,Malayan Banking Berhad,KLSE
+JPYUSD%3DX,JPYUSD,CCY
+GBPUSD%3DX,GBPUSD,CCY
+EURUSD%3DX,EURUSD,CCY
+MYRUSD%3DX,MYRUSD,CCY
+USDUSD%3DX,USD,CCY

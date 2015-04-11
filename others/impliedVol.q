@@ -3,19 +3,7 @@
 
 \l stat.q /include stat.q for cumulative normal distribution function.
 
-/Calculate implied volatility.
-/Instead of using methods such as bisection,newton rhapson or secant,
-/here we will just brute force.
-impliedVolatility:{[optType;S;K;T;rF;price]
-        roughgrid:9000#0.0001;
-        roughgrid:0+\roughgrid;
-        roughgrid:roughgrid+0.049;
-        $[optType~`call;
-                testprc:bsCallPriceEu[S;K;T;rf;roughgrid];
-                testprc:bsPutPriceEu[S;K;T;rF;roughgrid]];
-        errsq:abs[price-testprc] xexp 2.0;
-        :roughgrid errsq?min errsq
-        }
+
 
 /Function to calculate d1 as in N(d1) in the Black Scholes equation.
 d1:{[S;K;T;rF;vol]

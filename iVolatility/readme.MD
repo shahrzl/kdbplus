@@ -1,5 +1,16 @@
 
 ####Implied Volatility - Newton Raphson Method.
+----------------------------------------------
+
+Pre-requisite: Have q installed. To install q, go to www.kx.com.
+
+To run this:
+
+1.Run ivsvc.q
+
+        >q ivsvc.q
+        
+2.Open impliedVol.html in your web browser.
 
 Screenshot:
 

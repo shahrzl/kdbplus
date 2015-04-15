@@ -45,7 +45,9 @@ _Keywords: Binomial Model, Black-Scholes Equation, Implied Volatility, Smile, Op
   * Web Socket is used to push data to GUI.
   
   Screenshot:
-  ![ptr](https://cloud.githubusercontent.com/assets/9425771/6880569/4fe2dc9e-d573-11e4-84ae-b3522efe7696.png)
+ ![ptr0 2-2](https://cloud.githubusercontent.com/assets/9425771/7025990/95c51e58-dd79-11e4-8e61-296a486a758f.png)
+
+ ![ptr0 2agg](https://cloud.githubusercontent.com/assets/9425771/7026025/db9a0380-dd79-11e4-802d-fedac9b219bb.png)
 
 4. Physical Distribution Estimation.
   * An estimation of physical distribution based on historical data using Gaussian Kernel.

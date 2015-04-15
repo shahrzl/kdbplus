@@ -25,6 +25,7 @@ _Keywords: Binomial Model, Black-Scholes Equation, Implied Volatility, Smile, Op
 2. Implied Risk Neutral Distribution.
   * Computation of Implied Risk Neutral Distribution by recovering from index option prices.
   * Here I use Nikkei 225 Options data available from Osaka Stock Exchange (OSE) website.
+  * Data source: http://www.jpx.co.jp/markets/statistics-derivatives/daily/index.html
   
   References:
 

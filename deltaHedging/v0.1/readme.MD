@@ -1,7 +1,7 @@
 Pre-requisites: 
   * Have q installed. To install q, go to www.kx.com.
   * Tickerplant. tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/.
-  * stat.q
+  * stat.q. Can be downloaded from http://kx.com/q/stat.q.
   * impliedVolNR.q. Available under iVolatility directory.
 
 

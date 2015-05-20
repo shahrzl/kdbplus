@@ -9,5 +9,5 @@
 
 Screenshot:
 
-
+![deltahedge3](https://cloud.githubusercontent.com/assets/9425771/7717062/885b438a-fecd-11e4-8422-c7c2f0d2f20b.png)
 

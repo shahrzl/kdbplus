@@ -1,4 +1,4 @@
-/load pubsub functionality
+/load pubsub functionality.
 \l u2.q
 
 .z.ws:{0N!`ConnectingToExecSvc; value -9!x}
@@ -11,10 +11,6 @@ executionTbl:([] date:`date$();time:`time$();account:`$();sym:`$();trader:`$();s
 
 //Connect to pnl service.
 //h:hopen 5011;
-
-testFunc:{[dat]
-        0N!dat;
-        }
 
 enterTrade:{[dat]
         tmp:.z.D,.z.t;
@@ -30,9 +26,12 @@ enterTrade:{[dat]
         `executionTbl insert tmp,acc,sym,trd,side,qty,price;
 /call prExec in pnl.q
         0N!tmp,acc,sym,trd,side,qty,price;
-//      neg[h] (`prExec;`account`sym`trader`side`qty`execPrice!acc,sym,trd,side,qty,price);
-        .u.pubExec[`executionTbl ;`account`sym`trader`side`qty`execPrice!acc,sym,trd,side,qt
-y,price ];
+        /neg[h] (`prExec;`account`sym`trader`side`qty`execPrice!acc,sym,trd,side,qty,price);
+        .u.pubExec[`executionTbl ;`account`sym`trader`side`qty`execPrice!acc,sym,trd,side,qty,price ];
         }
 
 \p 5013
+
+.u.init[];
+
+\

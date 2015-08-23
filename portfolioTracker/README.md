@@ -1,13 +1,12 @@
 
-###Preview of version 0.2
+###Preview of version 0.3
 ======================
 
 ####What's new?
 
-* Support multiple currencies. PnL in currencies other than USD will be automatically converted to USD.
-* Added product informations such as name and exchange.
-* Aggregate view by Account.
-* Live Chart for market data.
+* Use publish/subscribe mechanism between pnlsvc.q and execsvc.q. This is based on u.q source code from http://code.kx.com/wiki/Cookbook/publishsubscribe.
+* Bug Fixes.
+* Small Enhancements for Trade Entry functionality.
 
 Screenshot:
 

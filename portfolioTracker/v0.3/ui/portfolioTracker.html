@@ -1,0 +1,390 @@
+<!doctype html>
+<html>
+<head>
+<title>Realtime Portfolio Tracker</title>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
+<style>
+    body { font-size: 80.5%;
+        font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+        }
+    label, input { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+  </style>
+
+<script>
+$(function() {
+        var dialog, form,
+
+        // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+        symbol = $( "#symbol" ),
+        account = $( "#account" ),
+        trader = $( "#trader" ),
+        quantity= $("#quantity"),
+        price=$("#dollar"),
+        allFields = $( [] ).add( symbol ).add( account ).add( trader ).add(quantity).add(price),
+        tips = $( ".validateTips" );
+
+        function updateTips( t ) {
+                tips
+                        .text( t )
+                        .addClass( "ui-state-highlight" );
+                setTimeout(function() {
+                        tips.removeClass( "ui-state-highlight", 1500 );
+                }, 500 );
+        }
+
+        function checkLength( o, n, min, max ) {
+                if ( o.val().length > max || o.val().length < min ) {
+                o.addClass( "ui-state-error" );
+                updateTips( "Length of " + n + " must be between " +
+                min + " and " + max + "." );
+                return false;
+                } else {
+                return true;
+                }
+        }
+
+        function checkNumeric(o, n ){
+                if(! $.isNumeric(o.val())) {
+                        o.addClass( "ui-state-error" );
+                        updateTips( "Field " + n + " must be numeric.");
+                        return false;
+                } else {
+                        return true;
+                }
+        }
+
+        function checkRegexp( o, regexp, n ) {
+                if ( !( regexp.test( o.val() ) ) ) {
+                o.addClass( "ui-state-error" );
+                updateTips( n );
+                return false;
+                } else {
+                return true;
+                }
+        }
+
+        //process trade entry here.
+        function callEnterTrade(){
+                var valid=true;
+                allFields.removeClass( "ui-state-error" );
+
+                console.log("###");
+                //console.log("getting side data");
+                //console.log( $('input[type="radio"]:checked').val()) ;
+
+                //Validate user entered values here.
+                valid = valid && checkLength( symbol, "symbol", 1, 10 );
+                valid = valid && checkLength( account, "account", 3, 10 );
+                valid = valid && checkLength( trader, "trader", 5, 15 );
+                valid = valid && checkLength( quantity, "quantity", 1, 9 );
+                valid = valid && checkLength( price, "price", 1, 5 );
+
+                //check numeric value
+                valid = valid && checkNumeric(quantity,"quantity");
+                valid = valid && checkNumeric(price,"price");
+
+                if(valid){
+                        enterTrade();
+                        dialog.dialog("close");
+                }
+                //dialog.dialog("close");
+                return valid;
+        }
+
+        dialog = $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 500,
+        width: 350,
+        modal: true,
+        buttons: {
+                "Enter trade": callEnterTrade,
+                Cancel: function() {
+                        dialog.dialog( "close" );
+                }
+        },
+        close: function() {
+                form[ 0 ].reset();
+                allFields.removeClass( "ui-state-error" );
+        }
+        });
+
+        form = dialog.find( "form" ).on( "submit", function( event ) {
+                event.preventDefault();
+                callEnterTrade();
+        });
+
+        $( "#enter-trade" ).button().on( "click", function() {
+                console.log("----Trade Entry---");
+                dialog.dialog( "open" );
+        });
+
+        $( "#filtersyms" ).button().on( "click", function() {
+                console.log("----FilterSyms---");
+                var values = $.map($('#selectedSymsList option'), function(e) { return e.value; });
+                filterSyms(values);
+
+        });
+
+        $('#addPop').click(function () {
+          if ($('#selectSymsList option:selected').val() != null) {
+              var tempSelect = $('#selectSymsList option:selected').val();
+              $('#selectSymsList option:selected').remove().appendTo('#selectedSymsList');
+              $("#selectSymsList").attr('selectedIndex', '-1').find("option:selected").removeAttr("selected");
+              $("#selectedSymsList").attr('selectedIndex', '-1').find("option:selected").removeAttr("selected");
+              $("#selectedSymsList").val(tempSelect);
+              tempSelect = '';
+          } else {
+              alert("Before add please select any position.");
+          }
+
+        //get all values.
+        var values = $.map($('#selectedSymsList option'), function(e) { return e.value; });
+        console.log("%%%%%");
+        console.log(values);
+
+        //call filter syms
+
+      });
+
+      $('#removePop').click(function () {
+          if ($('#selectedSymsList option:selected').val() != null) {
+              var tempSelect = $('#selectedSymsList option:selected').val();
+              $('#selectedSymsList option:selected').remove().appendTo('#selectSymsList');
+              $("#selectedSymsList").attr('selectedIndex', '-1').find("option:selected").removeAttr("selected");
+              $("#selectSymsList").attr('selectedIndex', '-1').find("option:selected").removeAttr("selected");
+
+              $("#selectSymsList").val(tempSelect);
+              tempSelect = '';
+          } else {
+              alert("Before remove please select any position.");
+          }
+
+        //call filter syms
+      });
+
+
+        //tabs
+        $("#tabs").tabs();
+
+//quote table click event
+        $('#tblQuote').on('click', 'tr', function () {
+                var name = $('td', this).eq(0).text();
+                $('#chartTitle').text(name);
+                getChart(name);
+                //alert( 'You clicked on '+name+'\'s row' );
+        } );
+
+//test double click event
+        $('#tblQuote').on('dblclick', 'tr', function () {
+                var name = $('td', this).eq(0).text();
+                var prc = $('td', this).eq(1).text();
+                //$('#chartTitle').text(name);
+                //getChart(name);
+                //alert( 'You dblclicked on '+name+'\'s row'+prc );
+                symbol.val( name );
+                price.val( prc );
+                dialog.dialog( "open" );
+        } );
+
+        });
+  </script>
+
+</head>
+
+<body onload="connect();connectExecSvc();">
+
+<!-- JQuery Dialog   -->
+
+<div id="dialog-form" title="Enter new trade">
+  <p class="validateTips">All form fields are required.</p>
+  <form>
+    <fieldset>
+        <label class="description" for="symbol">Symbol </label>
+        <input type="text" id="symbol" name="symbol" value="GOOG" class="text ui-widget-content ui-corner-all">
+
+        <label class="description" for="account">Account </label>
+        <input type="text" id="account" name="account" value="acc1" class="text ui-widget-content ui-corner-all">
+
+        <label class="description" for="trader">Trader </label>
+        <input type="text" id="trader" name="trader" value="trader1" class="text ui-widget-content ui-corner-all">
+
+        <label class="description" for="quantity">Quantity </label>
+        <input type="number" id="quantity" name="quantity" value="100" class="text ui-widget-content ui-corner-all">
+
+        <label class="description" for="price">Price </label>
+        <input type="number" id="dollar" name="price" value="" class="text ui-widget-content ui-corner-all">
+
+      <span>
+         <label class="choice" for="element_6_1">Buy</label>
+         <input text="Buy" id="buy" name="element_6" class="element radio" checked type="radio" value="B" />
+         <label class="choice" for="element_6_2">Sell</label>
+         <input text="Sell" id="sell" name="element_6" class="element radio" type="radio" value="S" />
+      </span>
+
+      <!-- Allow form submission with keyboard without duplicating the dialog button-->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+
+    </fieldset>
+  </form>
+</div>
+
+<!-- ends of Jquery dialog -->
+
+<div id="tabs">
+
+        <ul>
+                <li><a href="#tabs-1">Portfolio Tracker</a></li>
+                <li><a href="#tabs-2">Aggregate View</a></li>
+                <li><a href="#tabs-3"> <span class="ui-icon ui-icon-plusthick"></span> </a></li>
+        </ul>
+
+<div id="tabs-1">
+
+   <!-- Create a section to filter on syms -->
+<section class="ui-widget">
+<!-- <h4>Select Syms: </h4> -->
+
+<table cellpadding="30" height="150">
+<tr>
+<td>
+
+<div id="selectSyms" class="ui-widget">
+
+<h4>Select Syms: </h4>
+
+<select id="selectSymsList" name="selectSymsList" multiple="multiple" style="width: 150px; height: 70px; margin: 0px 2px 0px 3px;" selectedindex="-1"></select>
+
+<a href="javascript:void(0);" id="addPop">Add</a>
+<a href="javascript:void(0);" id="removePop">Remove</a>
+
+<select id="selectedSymsList" name="selectedSymsList" multiple="multiple" style="width: 150px; height: 70px; margin: 0px 2px 0px 3px;" selectedindex="-1"></select>
+
+</div>
+
+</td>
+
+<!-- Display quote-->
+<td>
+
+        <div  class="ui-widget">
+         <h4>Quotes</h4>
+         <table id="tblQuote" class="ui-widget ui-widget-content"></table>
+        </div>
+
+</td>
+
+<!-- Display chart -->
+<td>
+<h5 id="chartTitle">GOOG</h5>
+<div id="price_chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+</tr>
+</table>
+
+<button id="filtersyms">Filter</button>
+</section>
+
+<!-- Set up placeholders to display the trade and quote outputs -->
+<section id="Position">
+
+        <div  class="ui-widget">
+         <h4>Portfolio Tracker</h4>
+         <table id="tblPosition" class="ui-widget ui-widget-content"></table>
+      </div>
+
+</section>
+
+<button id="enter-trade">Enter new trade</button>
+
+<table cellpadding="30" width="100%" >
+<tr>
+<td>
+<div id="chart_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+<td>
+<div id="chart2_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+
+</tr>
+</table>
+
+
+</div>
+
+<!-- Pnl by Account -->
+<div id="tabs-2">
+
+<section id="PnLByAccount">
+
+        <div  class="ui-widget">
+                <h4>PnL by Account</h4>
+                <table id="tblPnLByAccount" class="ui-widget ui-widget-content"></table>
+        </div>
+
+</section>
+
+<table cellpadding="30" width="100%" >
+<tr>
+<td>
+<div id="chart21_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+<td>
+<div id="chart22_div" style="width: 600px; height: 300px;"></div>
+</td>
+
+</tr>
+</table>
+
+</div>
+
+<div id="tabs-3">
+
+</div>
+
+</div>
+
+
+   <!-- Load kdb related  JavaScript files -->
+<script src="http://kx.com/q/c/c.js"></script>
+<script src="pnl.js"></script>
+<script src="processTrade.js"></script>
+
+<style> /* define some CSS styling on page elements */
+section {margin:10px;padding:20px;width:95%;}
+button {margin:10px;}
+h3 {margin:5px;}
+.split {float:left;width:45%;margin-right:20px;display:table;}
+.two_graphs {
+        display: block;
+        width: 1300px;
+        margin: 0 auto;
+}
+</style>
+
+
+</body>
+</html>

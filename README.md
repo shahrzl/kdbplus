@@ -9,6 +9,12 @@ Blog: https://arjunadelta.wordpress.com
 
 ###What's New?
 
+Portfolio Tracker version 0.3 is now available under /portfolioTracker directory.
+
+Screenshot:
+![ptr0 2-2](https://cloud.githubusercontent.com/assets/9425771/7025990/95c51e58-dd79-11e4-8e61-296a486a758f.png)
+
+
 Delta Hedging Simulator is now available under /deltaHedging directory.
 
 Screenshot:

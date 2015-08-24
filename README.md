@@ -21,7 +21,7 @@ Screenshot:
 
 ![deltahedge3](https://cloud.githubusercontent.com/assets/9425771/7717062/885b438a-fecd-11e4-8422-c7c2f0d2f20b.png)
 
-###Other projects:
+###Projects:
 
 1. Binary and Barrier Options Pricing.
   * Here we tried to price two types of options. The Higher and the No Touch which are available

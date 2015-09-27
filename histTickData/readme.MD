@@ -30,5 +30,5 @@ To make it executable, run
 
         >chmod u+x tickDL.sh
         
-
+Also included is the sample trade data downloaded from http://www.netfonds.no website.
  

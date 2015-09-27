@@ -19,9 +19,9 @@ tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
 This timer service use historical tick data downloaded from http://www.netfonds.no .
 
-A java downloaded is also included in this directory.
+A java downloader is also included in this directory.
 
-To compile the java downloader, simply
+To compile the java downloader, simply run
 
         >javac TickDL.java
         

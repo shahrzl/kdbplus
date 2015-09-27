@@ -14,11 +14,11 @@ tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
         >q yhfh.q 
  
 
-3.Run pnlsvc.q.
+3.Run execsvc.q.
 
         >q execsvc.q
 
-4.Run execsvc.q
+4.Run pnlsvc.q
 
         >q pnlsvc.q
         

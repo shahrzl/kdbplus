@@ -9,7 +9,11 @@ Blog: https://arjunadelta.wordpress.com
 
 ###What's New?
 
-Portfolio Tracker version 0.3 is now available under /portfolioTracker directory.
+Portfolio Tracker version 0.4 is now available under /portfolioTracker directory.
+
+New features in version 0.4:
+* Enhancements to support strategy backtesting by replaying historical tick data.
+* Historical tick data is sourced from http://www.netfonds.no. Of course you can use other sources, but may require editing of timersvc.q under /histTickData directory.
 
 Screenshot:
 ![ptr0 2-2](https://cloud.githubusercontent.com/assets/9425771/7025990/95c51e58-dd79-11e4-8e61-296a486a758f.png)

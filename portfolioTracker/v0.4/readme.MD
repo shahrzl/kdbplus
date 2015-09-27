@@ -26,7 +26,7 @@ tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
         >q pnlsvc.q
         
         in the q prompt, run
-        q)¥l insertCCY.q
+        q)\l insertCCY.q
         
 5.Open portfolioTracker.html in your browser.
 

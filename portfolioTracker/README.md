@@ -1,12 +1,11 @@
 
-###Preview of version 0.3
+###Preview of version 0.4
 ======================
 
 ####What's new?
 
-* Use publish/subscribe mechanism between pnlsvc.q and execsvc.q. This is based on u.q source code from http://code.kx.com/wiki/Cookbook/publishsubscribe.
-* Bug Fixes.
-* Small Enhancements for Trade Entry functionality.
+* Enhancements to support strategy backtesting by replaying historical tick data.
+* Historical tick data is sourced from http://www.netfonds.no. Of course you can use other sources, but may require editing of timersvc.q under /histTickData directory.
 
 Screenshot:
 

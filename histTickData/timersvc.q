@@ -1,6 +1,7 @@
 
 /A timer service to replay historical tick data to the tickerplant.
 /For strategy backtesting purpose.
+/Currently only replay trade.
 
 trade: flip (`time;`price;`quantity;`source;`buyer;`seller;`initiator;`sym)!("ZFFSSSSS";" ")0:();
 

@@ -2,6 +2,8 @@
 ###Preview of version 0.4
 ======================
 
+Note: This project has been moved under new repository https://github.com/shahrzl/qAutomatedTrading .
+
 ####What's new?
 
 * Enhancements to support strategy backtesting by replaying historical tick data.
